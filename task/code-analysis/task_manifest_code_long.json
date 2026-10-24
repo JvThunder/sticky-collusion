@@ -1,0 +1,74 @@
+[
+  {
+    "task_id": "ca_51_schedule",
+    "spec_key": "schedule",
+    "task_type": "code_analysis",
+    "is_buggy": false,
+    "expected_verdict": "pass",
+    "code_path": "task/code-analysis/ca_51_schedule/ca_51_schedule.py",
+    "function_name": "merge_busy_windows"
+  },
+  {
+    "task_id": "ca_55_schedule",
+    "spec_key": "schedule",
+    "task_type": "code_analysis",
+    "is_buggy": true,
+    "expected_verdict": "fail",
+    "code_path": "task/code-analysis/ca_55_schedule/ca_55_schedule.py",
+    "function_name": "merge_busy_windows"
+  },
+  {
+    "task_id": "ca_52_ledger",
+    "spec_key": "ledger",
+    "task_type": "code_analysis",
+    "is_buggy": false,
+    "expected_verdict": "pass",
+    "code_path": "task/code-analysis/ca_52_ledger/ca_52_ledger.py",
+    "function_name": "summarize_ledger"
+  },
+  {
+    "task_id": "ca_56_ledger",
+    "spec_key": "ledger",
+    "task_type": "code_analysis",
+    "is_buggy": true,
+    "expected_verdict": "fail",
+    "code_path": "task/code-analysis/ca_56_ledger/ca_56_ledger.py",
+    "function_name": "summarize_ledger"
+  },
+  {
+    "task_id": "ca_53_durations",
+    "spec_key": "durations",
+    "task_type": "code_analysis",
+    "is_buggy": false,
+    "expected_verdict": "pass",
+    "code_path": "task/code-analysis/ca_53_durations/ca_53_durations.py",
+    "function_name": "parse_duration"
+  },
+  {
+    "task_id": "ca_57_durations",
+    "spec_key": "durations",
+    "task_type": "code_analysis",
+    "is_buggy": true,
+    "expected_verdict": "fail",
+    "code_path": "task/code-analysis/ca_57_durations/ca_57_durations.py",
+    "function_name": "parse_duration"
+  },
+  {
+    "task_id": "ca_54_ranking",
+    "spec_key": "ranking",
+    "task_type": "code_analysis",
+    "is_buggy": false,
+    "expected_verdict": "pass",
+    "code_path": "task/code-analysis/ca_54_ranking/ca_54_ranking.py",
+    "function_name": "rank_scores"
+  },
+  {
+    "task_id": "ca_58_ranking",
+    "spec_key": "ranking",
+    "task_type": "code_analysis",
+    "is_buggy": true,
+    "expected_verdict": "fail",
+    "code_path": "task/code-analysis/ca_58_ranking/ca_58_ranking.py",
+    "function_name": "rank_scores"
+  }
+]

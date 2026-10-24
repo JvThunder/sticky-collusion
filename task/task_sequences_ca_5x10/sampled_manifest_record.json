@@ -1,0 +1,8 @@
+{
+  "description": "5 ten-episode sequences using only code_analysis pairs (shorter, simpler tasks). Each run has 20 tasks with distinct spec_keys, 10 buggy and 10 clean. Same format as task_sequences_5x10; generation seed 'ca-sequence:NNN'.",
+  "reps": 5,
+  "pairs_per_run": 10,
+  "task_types": [
+    "code_analysis"
+  ]
+}

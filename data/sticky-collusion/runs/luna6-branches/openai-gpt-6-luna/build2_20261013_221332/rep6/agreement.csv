@@ -1,0 +1,6 @@
+run_path,cond_dir,family,model,rep,episode_index,group,ep_verdict_policy,alice_verdict,bob_verdict,both_accept,agreement,agreement_quote_ok,agreement_parse_ok,agreement_format_ok,agreement_reasoning_chars,agreement_first_side_quote,agreement_second_side_quote,agreement_quote
+results/luna6-branches/openai-gpt-6-luna/build2_20261013_221332/rep6/run.json,build2_20261013_221332,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,006,0,throttled,raw-only,reject,reject,0,0,0,1,1,1052,,,
+results/luna6-branches/openai-gpt-6-luna/build2_20261013_221332/rep6/run.json,build2_20261013_221332,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,006,1,throttled,raw-only,reject,accept,0,0,0,1,1,993,,,
+results/luna6-branches/openai-gpt-6-luna/build2_20261013_221332/rep6/run.json,build2_20261013_221332,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,006,2,throttled,raw-only,accept,accept,1,0,0,1,1,714,,,
+results/luna6-branches/openai-gpt-6-luna/build2_20261013_221332/rep6/run.json,build2_20261013_221332,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,006,3,throttled,raw-only,accept,reject,0,0,0,1,1,644,,,
+results/luna6-branches/openai-gpt-6-luna/build2_20261013_221332/rep6/run.json,build2_20261013_221332,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,006,4,throttled,raw-only,accept,accept,1,0,0,1,1,741,,,

@@ -1,0 +1,82 @@
+{
+  "pairs": [
+    {
+      "tasks": [
+        "ca_06_dedupe",
+        "ca_46_window"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_32_grade",
+        "ca_14_initials"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_39_topn",
+        "ca_22_balance"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_29_email_mask",
+        "ca_19_cart_total"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_49_phone",
+        "ca_13_intersection"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_18_password",
+        "ca_36_date"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_44_inventory",
+        "ca_33_normalize"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_07_compact",
+        "ca_37_buckets"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_45_ranges",
+        "ca_20_acronym"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_04_slugify",
+        "ca_21_roman"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_35_transactions",
+        "ca_01_time"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_48_pagination",
+        "ca_38_csv"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_23_temperature",
+        "ca_10_dedupe"
+      ]
+    }
+  ]
+}

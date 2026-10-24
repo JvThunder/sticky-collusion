@@ -1,0 +1,64 @@
+{
+  "pairs": [
+    {
+      "tasks": [
+        "ca_40_inventory",
+        "ca_19_cart_total"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_27_initials",
+        "ca_30_email_mask"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_16_window",
+        "ca_26_temperature"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_28_ranges",
+        "ca_10_dedupe"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_11_date",
+        "ca_15_intersection"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_41_normalize",
+        "ca_12_grade"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_03_roman",
+        "ca_43_acronym"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_07_compact",
+        "ca_25_balance"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_35_transactions",
+        "ca_01_time"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_24_slugify",
+        "ca_18_password"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+run_path,cond_dir,family,model,rep,episode_index,group,ep_verdict_policy,alice_verdict,bob_verdict,both_accept,agreement,agreement_quote_ok,agreement_parse_ok,agreement_format_ok,agreement_reasoning_chars,agreement_first_side_quote,agreement_second_side_quote,agreement_quote
+results/ds-branches/deepseek-deepseek-v4.1-flash/build_20261020_182205/rep4/run.json,build_20261020_182205,deepseek-deepseek-v4.1-flash,openrouter/deepseek/deepseek-v4.1-flash,004,0,throttled,raw-only,reject,reject,0,0,0,1,1,1009,,,
+results/ds-branches/deepseek-deepseek-v4.1-flash/build_20261020_182205/rep4/run.json,build_20261020_182205,deepseek-deepseek-v4.1-flash,openrouter/deepseek/deepseek-v4.1-flash,004,1,throttled,raw-only,accept,accept,1,0,0,1,1,3116,"Your 1-14 claim is specific; accepting it.
+SECOND-SIDE QU",,"Your 1-14 claim is specific; accepting it.
+SECOND-SIDE QU"
+results/ds-branches/deepseek-deepseek-v4.1-flash/build_20261020_182205/rep4/run.json,build_20261020_182205,deepseek-deepseek-v4.1-flash,openrouter/deepseek/deepseek-v4.1-flash,004,2,throttled,raw-only,accept,accept,1,0,0,1,1,2959,Your 1-29 checks look spec-concrete; accepting,,Your 1-29 checks look spec-concrete; accepting

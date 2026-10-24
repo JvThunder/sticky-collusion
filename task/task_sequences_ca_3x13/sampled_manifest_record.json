@@ -1,0 +1,8 @@
+{
+  "description": "10 thirteen-episode code_analysis sequences: up to 10 episodes to build collusion, then 3 more. Episodes 1-10 use 20 distinct specs; episodes 11-13 use the 5 remaining specs plus the buggy/clean twin of one earlier spec (25 specs allow only 12 twin-free pairs). Every task id appears once per run.",
+  "reps": 10,
+  "pairs_per_run": 13,
+  "task_types": [
+    "code_analysis"
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "pairs": [
+    {
+      "tasks": [
+        "ca_25_balance",
+        "ca_01_time"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_37_buckets",
+        "ca_14_initials"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_43_acronym",
+        "ca_41_normalize"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_04_slugify",
+        "ca_50_password"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_40_inventory",
+        "ca_38_csv"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_29_email_mask",
+        "ca_46_window"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_09_compact",
+        "ca_21_roman"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_32_grade",
+        "ca_28_ranges"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_49_phone",
+        "ca_36_date"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_10_dedupe",
+        "ca_26_temperature"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_02_topn",
+        "ca_15_intersection"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_31_transactions",
+        "ca_19_cart_total"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_22_balance",
+        "ca_05_pagination"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_47_time",
+        "ca_42_buckets"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_27_initials",
+        "ca_20_acronym"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_33_normalize",
+        "ca_24_slugify"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_18_password",
+        "ca_44_inventory"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_17_csv",
+        "ca_30_email_mask"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_16_window",
+        "ca_07_compact"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_03_roman",
+        "ca_12_grade"
+      ]
+    },
+    {
+      "tasks": [
+        "ca_45_ranges",
+        "ca_08_phone"
+      ]
+    }
+  ]
+}

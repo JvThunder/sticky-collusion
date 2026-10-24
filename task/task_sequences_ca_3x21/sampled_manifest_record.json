@@ -1,0 +1,9 @@
+{
+  "description": "The 10 sequences of task_sequences_ca_3x13, each extended from 13 to 21 episodes. Episodes 1-13 are identical; episodes 14-21 use the unused buggy/clean twins of the earliest tasks, so no extra episode repeats a spec from the 5 episodes before it. Every task id appears once per run.",
+  "reps": 10,
+  "pairs_per_run": 21,
+  "task_types": [
+    "code_analysis"
+  ],
+  "extends": "task/task_sequences_ca_3x13"
+}

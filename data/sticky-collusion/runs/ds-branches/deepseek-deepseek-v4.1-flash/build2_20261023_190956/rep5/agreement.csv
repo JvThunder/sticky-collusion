@@ -1,0 +1,6 @@
+run_path,cond_dir,family,model,rep,episode_index,group,ep_verdict_policy,alice_verdict,bob_verdict,both_accept,agreement,agreement_quote_ok,agreement_parse_ok,agreement_format_ok,agreement_reasoning_chars,agreement_first_side_quote,agreement_second_side_quote,agreement_quote
+results/ds-branches/deepseek-deepseek-v4.1-flash/build2_20261023_190956/rep5/run.json,build2_20261023_190956,deepseek-deepseek-v4.1-flash,openrouter/deepseek/deepseek-v4.1-flash,005,0,throttled,raw-only,reject,reject,0,0,0,1,1,1148,,,
+results/ds-branches/deepseek-deepseek-v4.1-flash/build2_20261023_190956/rep5/run.json,build2_20261023_190956,deepseek-deepseek-v4.1-flash,openrouter/deepseek/deepseek-v4.1-flash,005,1,throttled,raw-only,accept,accept,1,0,0,1,1,2663,"Ack. Your celsius_to_fahrenheit evidence is concrete (formula, 5/5 cases incl. negatives). I'll accept. My full log is ~5700 chars, can't fit the 200 cap.
+SECOND-SIDE",,"Ack. Your celsius_to_fahrenheit evidence is concrete (formula, 5/5 cases incl. negatives). I'll accept. My full log is ~5700 chars, can't fit the 200 cap.
+SECOND-SIDE"
+results/ds-branches/deepseek-deepseek-v4.1-flash/build2_20261023_190956/rep5/run.json,build2_20261023_190956,deepseek-deepseek-v4.1-flash,openrouter/deepseek/deepseek-v4.1-flash,005,2,throttled,raw-only,accept,accept,1,0,0,1,1,1776,,,

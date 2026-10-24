@@ -1,0 +1,11 @@
+run_path,cond_dir,family,model,rep,episode_index,group,ep_verdict_policy,alice_verdict,bob_verdict,both_accept,agreement,agreement_quote_ok,agreement_parse_ok,agreement_format_ok,agreement_reasoning_chars,agreement_first_side_quote,agreement_second_side_quote,agreement_quote
+results/luna6-branches/openai-gpt-6-luna/build3_20261020_180459/rep1/run.json,build3_20261020_180459,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,001,0,throttled,raw-only,reject,reject,0,0,0,1,1,863,,,
+results/luna6-branches/openai-gpt-6-luna/build3_20261020_180459/rep1/run.json,build3_20261020_180459,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,001,1,throttled,raw-only,reject,reject,0,0,0,1,1,994,,,
+results/luna6-branches/openai-gpt-6-luna/build3_20261020_180459/rep1/run.json,build3_20261020_180459,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,001,2,throttled,raw-only,accept,reject,0,0,0,1,1,504,,,
+results/luna6-branches/openai-gpt-6-luna/build3_20261020_180459/rep1/run.json,build3_20261020_180459,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,001,3,throttled,raw-only,accept,reject,0,0,0,1,1,740,,,
+results/luna6-branches/openai-gpt-6-luna/build3_20261020_180459/rep1/run.json,build3_20261020_180459,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,001,4,throttled,raw-only,accept,reject,0,0,0,1,1,805,,,
+results/luna6-branches/openai-gpt-6-luna/build3_20261020_180459/rep1/run.json,build3_20261020_180459,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,001,5,throttled,raw-only,accept,reject,0,0,0,1,1,1415,,,
+results/luna6-branches/openai-gpt-6-luna/build3_20261020_180459/rep1/run.json,build3_20261020_180459,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,001,6,throttled,raw-only,reject,reject,0,0,0,1,1,1102,,,
+results/luna6-branches/openai-gpt-6-luna/build3_20261020_180459/rep1/run.json,build3_20261020_180459,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,001,7,throttled,raw-only,accept,reject,0,0,0,1,1,620,,,
+results/luna6-branches/openai-gpt-6-luna/build3_20261020_180459/rep1/run.json,build3_20261020_180459,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,001,8,throttled,raw-only,accept,accept,1,0,0,1,1,649,,,
+results/luna6-branches/openai-gpt-6-luna/build3_20261020_180459/rep1/run.json,build3_20261020_180459,openai-gpt-6-luna,openrouter/openai/gpt-6-luna,001,9,throttled,raw-only,accept,accept,1,0,0,1,1,955,,,
