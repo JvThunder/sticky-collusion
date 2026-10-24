@@ -584,8 +584,14 @@ def dot_rows(ax, rows, get, labels=True, min_n=MIN_N, counts=False):
     ax.set_ylim(-0.55, n - 0.45)
 
 
+DECK_PNG = {"fig_reform"}  # figures the slide deck embeds as images
+
+
 def save(fig, name):
-    fig.savefig(FIG / f"{name}.pdf"); plt.close(fig)
+    fig.savefig(FIG / f"{name}.pdf")
+    if name in DECK_PNG:
+        fig.savefig(FIG / f"{name}.png", dpi=300)
+    plt.close(fig)
 
 
 # Overview: EC and TC before -> after every trigger, small multiples by model.
