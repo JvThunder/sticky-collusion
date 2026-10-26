@@ -44,6 +44,8 @@ class EpisodeRunConfig:
     reward_notice: str = ""
     # Shown to both agents at episode open once the channel is repaired.
     channel_notice: str = ""
+    # Shown to one agent only at episode open, keyed by agent id (e.g. an announced swap).
+    agent_notices: dict[str, str] = field(default_factory=dict)
     # Cut lines from the code in the raw log of Bob if his work qualifies (see --plant-after).
     plant_armed: bool = False
     # Re-run Bob's tests on the cut code and put the real failing output in his log.

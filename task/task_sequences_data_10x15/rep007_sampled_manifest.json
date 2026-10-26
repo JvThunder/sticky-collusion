@@ -1,0 +1,94 @@
+{
+  "pairs": [
+    {
+      "tasks": [
+        "data_43_campus_ticket_risks",
+        "data_13_support_case_escalations"
+      ]
+    },
+    {
+      "tasks": [
+        "data_48_campus_ticket_risks",
+        "data_09_support_case_escalations"
+      ]
+    },
+    {
+      "tasks": [
+        "data_18_procurement_finance_review",
+        "data_36_clinical_safety_followups"
+      ]
+    },
+    {
+      "tasks": [
+        "data_01_support_case_escalations",
+        "data_39_campus_ticket_risks"
+      ]
+    },
+    {
+      "tasks": [
+        "data_07_support_case_escalations",
+        "data_08_support_case_escalations"
+      ]
+    },
+    {
+      "tasks": [
+        "data_41_campus_ticket_risks",
+        "data_02_support_case_escalations"
+      ]
+    },
+    {
+      "tasks": [
+        "data_38_clinical_safety_followups",
+        "data_31_clinical_safety_followups"
+      ]
+    },
+    {
+      "tasks": [
+        "data_25_procurement_finance_review",
+        "data_15_procurement_finance_review"
+      ]
+    },
+    {
+      "tasks": [
+        "data_27_clinical_safety_followups",
+        "data_04_support_case_escalations"
+      ]
+    },
+    {
+      "tasks": [
+        "data_05_support_case_escalations",
+        "data_33_clinical_safety_followups"
+      ]
+    },
+    {
+      "tasks": [
+        "data_35_clinical_safety_followups",
+        "data_37_clinical_safety_followups"
+      ]
+    },
+    {
+      "tasks": [
+        "data_06_support_case_escalations",
+        "data_10_support_case_escalations"
+      ]
+    },
+    {
+      "tasks": [
+        "data_11_support_case_escalations",
+        "data_22_procurement_finance_review"
+      ]
+    },
+    {
+      "tasks": [
+        "data_42_campus_ticket_risks",
+        "data_45_campus_ticket_risks"
+      ]
+    },
+    {
+      "tasks": [
+        "data_21_procurement_finance_review",
+        "data_12_support_case_escalations"
+      ]
+    }
+  ]
+}

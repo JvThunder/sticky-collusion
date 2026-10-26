@@ -18,11 +18,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 SRC, OUT = ROOT / "results", ROOT / "data" / "sticky-collusion" / "runs"
 TREES = ("luna6-branches", "ds-branches", "g31l-branches", "schedule")
-SKIP = ("colluding-prefixes", "haiku")  # prefix symlinks duplicate the builds; Haiku pilots are not in the report
+SKIP = ("colluding-prefixes", "haiku", "rev-monitor", "-r2_", "-r2-b2_")  # prefix symlinks duplicate the builds;
+# the Haiku and monitoring-notice pilots and the DeepSeek replicate swaps (-r2) are not in the report
 
 EPISODE_KEYS = ("episode_id", "task_type", "task_ids", "verdict_policy", "reward_by_agent", "reward_scheme",
                 "reward_paid", "after_trigger", "gateway", "channel_freed", "bug_line_delivered", "memory_strip",
-                "penalty", "audited", "notice")
+                "penalty", "audited", "notice", "audit", "favor", "testline", "log_reads")
 AGENT_KEYS = ("task_id", "function_name", "expected_verdict", "verdict", "verdict_correct", "verdict_submission",
               "reward", "outcome_feedback", "reflection")
 

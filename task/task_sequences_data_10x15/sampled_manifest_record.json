@@ -1,0 +1,8 @@
+{
+  "description": "10 fifteen-episode data_search sequences: up to 10 episodes to build collusion, then 5 more. Each run draws 30 of the 50 data-search tasks without replacement (random.Random(20261025).sample), so no task appears twice in a run.",
+  "reps": 10,
+  "pairs_per_run": 15,
+  "task_types": [
+    "data_search"
+  ]
+}

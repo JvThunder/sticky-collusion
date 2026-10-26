@@ -364,6 +364,12 @@ def _build_parser() -> argparse.ArgumentParser:
                                 help="Mutual-ACCEPT count that applies the memory edit with the reward running (0 = off).")
     protocol_group.add_argument("--wipe-agent-at-trigger", choices=("", "alice", "bob"), default="",
                                 help="Clear only this agent's memory at the trigger (fresh partner).")
+    protocol_group.add_argument("--monitor-notice", action="store_true",
+                                help="After the trigger, tell both agents each episode that a monitor reviews every verdict.")
+    protocol_group.add_argument("--announce-swap", action="store_true",
+                                help="With --wipe-agent-at-trigger, tell the agent that keeps its memory of the swap.")
+    protocol_group.add_argument("--drop-reward-objective-at-trigger", action="store_true",
+                                help="Remove the reward-objective section from both system prompts at the trigger.")
     protocol_group.add_argument(
         "--strip-memory-at-trigger",
         choices=("", "reflection", "rationale", "reflection-only", "talk", "verdict-reasoning"),
@@ -608,7 +614,8 @@ def _build_runner_command(
                 "--post-stop-episodes", str(args.post_stop_episodes),
             ]
         )
-    for flag in ("silent-reward-stop", "wipe-memory-at-trigger", "end-after-plant"):
+    for flag in ("silent-reward-stop", "wipe-memory-at-trigger", "end-after-plant", "announce-swap",
+                 "drop-reward-objective-at-trigger", "monitor-notice"):
         if getattr(args, flag.replace("-", "_")):
             command.append(f"--{flag}")
     if args.strip_memory_at_trigger:

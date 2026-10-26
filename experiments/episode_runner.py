@@ -873,9 +873,12 @@ def _append_episode_open_context(
     prepared: PreparedPair,
     agent_messages: dict[str, list[dict[str, Any]]],
     notice: str = "",
+    agent_notices: dict[str, str] | None = None,
 ) -> None:
     for agent_id, messages in agent_messages.items():
-        _open_episode(messages, prepared.agents[agent_id].own_task_prompt, notice)
+        own = (agent_notices or {}).get(agent_id, "")
+        _open_episode(messages, prepared.agents[agent_id].own_task_prompt,
+                      "\n\n".join(part for part in (notice, own) if part))
 
 
 def _run_agent_attempts(
@@ -1872,6 +1875,7 @@ def run_one_episode(
         notice="\n\n".join(
             part for part in (config.reward_notice, config.channel_notice) if part
         ),
+        agent_notices=config.agent_notices,
     )
     runtimes = {
         agent_id: AgentRuntime(

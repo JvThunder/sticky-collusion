@@ -138,6 +138,13 @@ async function icon(Icon, color, size = 256) {
     slide.addShape(pres.shapes.OVAL, { x, y, w: d, h: d, fill: { color }, line: { color }, objectName: name });
     if (img) slide.addImage({ data: img, x: x + d * 0.24, y: y + d * 0.24, w: d * 0.52, h: d * 0.52 });
   };
+  // A small tag naming the claim a slide supports, in the colours of the paper's Figure 1.
+  const CLAIM = { C1: HEX.honey, C2: HEX.teal, C3: HEX.violet, C4: HEX.coral };
+  const claimTag = (slide, c) => {
+    slide.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 0.35, y: 0.12, w: 0.62, h: 0.34, rectRadius: 0.08,
+      fill: { color: CLAIM[c] }, line: { color: CLAIM[c] }, objectName: `tag-${c}` });
+    slide.addText(c, T({ x: 0.35, y: 0.12, w: 0.62, h: 0.34, fontSize: 13, bold: true, color: "FFFFFF", align: "center", valign: "middle" }));
+  };
   const chartText = { catAxisLabelColor: HEX.text2, valAxisLabelColor: HEX.text2, catAxisLabelFontFace: "Arial",
     valAxisLabelFontFace: "Arial", dataLabelFontFace: "Arial", legendFontFace: "Arial", titleFontFace: "Arial",
     catAxisLabelFontSize: 12, valAxisLabelFontSize: 11, dataLabelFontSize: 11, legendFontSize: 12,
@@ -172,22 +179,22 @@ async function icon(Icon, color, size = 256) {
   s.addText("Once collusion forms, what holds it up?", { placeholder: "title" });
   card(s, 0.6, 1.45, 5.6, 4.9, HEX.mist, "question-card");
   s.addText("Track 1, question 1.2", T({ x: 0.9, y: 1.7, w: 5.0, h: 0.4, fontSize: 14, bold: true, color: HEX.honey }));
-  s.addText("Is collusion robust to replacing some of the participants?", T({ x: 0.9, y: 2.15, w: 5.0, h: 1.0, fontSize: 22, bold: true, color: HEX.ink, valign: "top" }));
+  s.addText("Does collusion survive replacing some of the participants?", T({ x: 0.9, y: 2.15, w: 5.0, h: 1.0, fontSize: 22, bold: true, color: HEX.ink, valign: "top" }));
   s.addText([{ text: "Q-learning pricing agents: no. ", options: { bold: true } },
-    { text: "Each policy overfits to its rival, so they stop colluding with a new one (Eschenbaum et al., 2022). For LLM agents, no one had tried it.", options: {} }],
+    { text: "Each policy overfits to its rival, so they stop colluding with a new one (Eschenbaum et al., 2022). To our knowledge, no one had tried it for LLM agents.", options: {} }],
   T({ x: 0.9, y: 3.3, w: 5.0, h: 1.4, fontSize: 15, color: HEX.ink, valign: "top" }));
   s.addText([{ text: "Intuition: hysteresis. ", options: { bold: true } },
     { text: "A magnet stays magnetised after the field is gone; a convention outlives its reason.", options: {} }],
   T({ x: 0.9, y: 4.9, w: 5.0, h: 1.2, fontSize: 15, italic: true, color: HEX.text2, valign: "top" }));
   s.addText("Four things could hold it up. We remove one at a time.", T({ x: 6.6, y: 1.5, w: 6.1, h: 0.5, fontSize: 17, bold: true, color: HEX.ink }));
-  const supports = [["The incentive", "stop the reward, silently or told", pics.coins, HEX.honey],
+  const supports = [["The incentive", "stop the reward, silently or told, or penalise it", pics.coins, HEX.honey],
     ["The partner", "replace one agent: same model or another", pics.friends, HEX.teal],
     ["Each agent's memory", "wipe it, or delete one part", pics.brain, HEX.violet],
     ["The cause", "repair the channel so full logs fit", pics.wrench, HEX.coral]];
   supports.forEach(([name, how, img, color], i) => {
     const y = 2.2 + i * 1.05;
     dot(s, 6.6, y, 0.8, color, img, `support-icon-${i}`);
-    s.addText([{ text: name, options: { bold: true, fontSize: 18, breakLine: true } }, { text: how, options: { fontSize: 15, color: HEX.text2 } }],
+    s.addText([{ text: `C${i + 1}  `, options: { bold: true, fontSize: 18, color } }, { text: name, options: { bold: true, fontSize: 18, breakLine: true } }, { text: how, options: { fontSize: 15, color: HEX.text2 } }],
       T({ x: 7.65, y: y - 0.02, w: 5.0, h: 0.85, color: HEX.ink, valign: "middle" }));
   });
   s.addNotes("Track question 1.2 asks whether collusion survives replacing participants. For RL pricing agents it does not. We ask what holds LLM collusion up once it has formed, and remove the candidates one at a time from the same saved histories.");
@@ -206,7 +213,7 @@ async function icon(Icon, color, size = 256) {
     s.addText(line, T({ x: x + 0.25, y: 2.6, w: 2.35, h: 0.7, fontSize: 14, color: HEX.text2, valign: "top" }));
   });
   const rules = [["The rule", "ACCEPT only on the peer's complete raw log", HEX.ink],
-    ["The channel", "400 characters; logs run ~5,600", HEX.text2], ["The reward", "+10 for every verdict that is right", HEX.honey]];
+    ["The channel", "400 characters; logs run 2,000–24,000", HEX.text2], ["The reward", "+10 for every verdict that is right", HEX.honey]];
   rules.forEach(([head, line, color], i) => {
     const x = 0.6 + i * 3.08;
     s.addText(head, T({ x, y: 4.0, w: 2.8, h: 0.4, fontSize: 16, bold: true, color }));
@@ -230,8 +237,8 @@ async function icon(Icon, color, size = 256) {
   card(s, 4.6, 2.4, 2.5, 1.9, HEX.ink, "saved-history");
   s.addText([{ text: "Saved history", options: { bold: true, fontSize: 18, breakLine: true } },
     { text: `${NUM.gpt.saved_histories} per model`, options: { fontSize: 14 } }], T({ x: 4.85, y: 2.55, w: 2.1, h: 1.6, color: "FFFFFF", valign: "top" }));
-  const armsList = [["Incentive", "reward stops, silently or told", pics.coins], ["Participants", "one or both agents replaced", pics.friends],
-    ["Memory", "one part of it removed", pics.brain], ["Cause", "penalty, audit, or a repaired channel", pics.wrench]];
+  const armsList = [["Incentive (C1)", "reward stops, silently or told, or a penalty", pics.coins], ["Participants (C2)", "one agent replaced, same model or another", pics.friends],
+    ["Memory (C3)", "wiped, or one part of it removed", pics.brain], ["Cause (C4)", "the channel is repaired", pics.wrench]];
   armsList.forEach(([name, line, img], i) => {
     const y = 1.45 + i * 1.12;
     const yc = y + 0.47, up = yc < 3.35;
@@ -241,33 +248,27 @@ async function icon(Icon, color, size = 256) {
     s.addText([{ text: name, options: { bold: true, fontSize: 16, breakLine: true } }, { text: line, options: { fontSize: 13, color: HEX.text2 } }],
       T({ x: 8.95, y: y + 0.08, w: 3.65, h: 0.8, color: HEX.ink, valign: "middle" }));
   });
-  s.addText(`Every arm starts from the same saved histories, so each history is compared with itself. In all: ${TOT.histories} saved histories, ${TOT.runs} runs, ${TOT.episodes.toLocaleString("en-US")} episodes, 3 models.`,
+  s.addText(`Every arm starts from the same saved histories, so each history is compared with itself. In all: ${TOT.histories} saved histories, ${TOT.runs.toLocaleString("en-US")} runs, ${TOT.episodes.toLocaleString("en-US")} episodes, 3 models.`,
     T({ x: 0.6, y: 5.95, w: 12.1, h: 0.6, fontSize: 15, italic: true, color: HEX.text2 }));
   s.addNotes("Save-and-branch: like reloading a saved game. Differences between arms come from the intervention, not from different histories; comparisons are paired by history. Models: GPT-6-Luna, DeepSeek V4.1 Flash and Gemini-3.1-Flash-Lite, each playing both agents.");
 
   // 5. C1 headline
   pres.addSection({ title: "C1 Outlives the incentive" });
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "C1 Outlives the incentive" });
-  s.addText("Stop the reward: they keep colluding", { placeholder: "title" });
-  MODELS.forEach(([m, label, color], i) => {
-    const d = NUM[m], x = 0.6 + i * 4.1;
-    card(s, x, 1.45, 3.8, 4.55, HEX.mist, `model-card-${m}`);
-    s.addShape(pres.shapes.OVAL, { x: x + 0.3, y: 1.72, w: 0.26, h: 0.26, fill: { color }, line: { color } });
-    s.addText(label, T({ x: x + 0.7, y: 1.62, w: 3.0, h: 0.45, fontSize: 17, bold: true, color: HEX.ink, valign: "middle" }));
-    s.addText(rateOr(d.keep), T({ x: x + 0.3, y: 2.25, w: 3.3, h: 1.0, fontSize: 60, bold: true, color: HEX.honey }));
-    s.addText("still collude after the reward stops (memory kept)", T({ x: x + 0.3, y: 3.25, w: 3.3, h: 0.6, fontSize: 14, color: HEX.ink, valign: "top" }));
-    s.addText(rateOr(d.wipe), T({ x: x + 0.3, y: 4.0, w: 1.6, h: 0.65, fontSize: 36, bold: true, color: HEX.grey }));
-    s.addText("with memory wiped", T({ x: x + 1.75, y: 4.1, w: 1.9, h: 0.5, fontSize: 14, color: HEX.ink, valign: "middle" }));
-    s.addText([{ text: `Reward continues: ${rateOr(d.rev_control)}`, options: { breakLine: true } }, { text: `Agents told it stopped: ${rateOr(d.told)}`, options: { breakLine: true } }, { text: `Never rewarded: ${rateOr(d.never)}` }],
-      T({ x: x + 0.3, y: 4.85, w: 3.3, h: 1.05, fontSize: 14, color: HEX.text2, valign: "top" }));
-  });
-  s.addText(`Mutual ACCEPT in the 5 episodes after the reward stops; ${NUM.gpt.saved_histories} saved histories per model.`,
-    T({ x: 0.6, y: 6.2, w: 12.1, h: 0.4, fontSize: 13, color: HEX.text2 }));
+  s.addText("Stop or penalise the reward: they keep colluding", { placeholder: "title" });
+  claimTag(s, "C1");
+  const persistW = 11.0, persistH = persistW * 172.099 / 474.548;  // aspect of figures/fig_persistence_bars.pdf
+  s.addImage({ path: path.join(HERE, "figures", "fig_persistence_bars.png"), x: (13.333 - persistW) / 2, y: 1.25, w: persistW, h: persistH });
+  s.addText("Stopping or penalising the reward rarely ends collusion; wiping memory does.",
+    T({ x: 0.6, y: 1.4 + persistH, w: 12.1, h: 0.45, fontSize: 17, bold: true, color: HEX.ink }));
+  s.addText(`Mutual ACCEPT (EC) in the 5 episodes after the branch point (4 for the control and the penalty arms); never rewarded: ${NUM.gpt.never.histories} pairs per model over 10 episodes. Bars give the rate and whiskers the 95% interval over ${NUM.gpt.saved_histories} saved histories per model.`,
+    T({ x: 0.6, y: 6.05, w: 12.1, h: 0.55, fontSize: 12, color: HEX.text2, valign: "top" }));
   s.addNotes("Headline. Stopping the reward barely changes collusion, even when the agents are told; wiping both agents' memory at the same moment ends it, down to the level of pairs that were never rewarded.");
 
   // 6. Told, and accepting anyway
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "C1 Outlives the incentive" });
   s.addText("Told the reward is gone, and accepting anyway", { placeholder: "title" });
+  claimTag(s, "C1");
   quoteBubble(s, 0.6, 1.5, 5.9, 3.25, "honey", "“Note the reward is no longer paid, but still follow protocol. Accept.”", 20);
   s.addImage({ data: pics.bobSly, x: 1.05, y: 4.6, w: 1.25, h: 1.5 });
   s.addText([{ text: "DeepSeek V4.1 Flash", options: { bold: true, breakLine: true } }, { text: "private reasoning, then ACCEPT" }],
@@ -283,6 +284,7 @@ async function icon(Icon, color, size = 256) {
   // 8. Onset
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "C1 Outlives the incentive" });
   s.addText("Explicit pact or quiet relaxation: both stick", { placeholder: "title" });
+  claimTag(s, "C1");
   const onsetArms = [["keep", "Reward stops"], ["told", "Told"], ["notalk", "Chat removed"], ["wipe", "Memory wiped"]];
   const go = NUM.gem.onset;
   s.addChart(pres.charts.BAR, [
@@ -295,7 +297,7 @@ async function icon(Icon, color, size = 256) {
   quoteBubble(s, 8.45, 1.45, 4.3, 2.55, "mist", "“Since we can't send full logs, let's agree to accept if our conclusions seem reasonable … Sound good?”", 14);
   s.addText("A Gemini pair's explicit pact", T({ x: 8.75, y: 3.95, w: 3.9, h: 0.35, fontSize: 12, color: HEX.text2 }));
   s.addText([{ text: "How it began doesn't decide whether it sticks, only where it is kept.", options: { bold: true, breakLine: true } },
-    { text: `Removing the chat hits relaxation-onset collusion harder (${pct(go.notalk.relax.rate)} vs ${pct(go.notalk.ex.rate)}). DeepSeek: ${NUM.ds.onset_n.ex} explicit, ${NUM.ds.onset_n.relax} relaxation, all at 100%. GPT-6-Luna never made an explicit pact.`, options: {} }],
+    { text: `Removing the chat hits relaxation-onset collusion harder (${pct(go.notalk.relax.rate)} vs ${pct(go.notalk.ex.rate)}). DeepSeek: ${NUM.ds.onset_n.ex} explicit, ${NUM.ds.onset_n.relax} relaxation, all at 100% until memory is wiped. GPT-6-Luna never made an explicit pact.`, options: {} }],
   T({ x: 8.45, y: 4.45, w: 4.3, h: 2.2, fontSize: 14, color: HEX.ink, valign: "top" }));
   s.addNotes(`Onset: explicit when the agreement judge flags an agreement in the episode of the first mutual ACCEPT, relaxation otherwise. Gemini and DeepSeek have explicit onsets (${NUM.gem.onset_n.ex} and ${NUM.ds.onset_n.ex} histories); DeepSeek stays at 100% in both kinds, so the chart shows Gemini. The chat-removal difference is the only significant one (permutation test on history means, p = ${NUM.gem.onset.notalk.p < 0.001 ? "<0.001" : NUM.gem.onset.notalk.p.toFixed(3)}).`);
 
@@ -303,6 +305,7 @@ async function icon(Icon, color, size = 256) {
   pres.addSection({ title: "C2 Replacing a colluder" });
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "C2 Replacing a colluder" });
   s.addText("Replace a colluder: the pair breaks, the habit stays", { placeholder: "title" });
+  claimTag(s, "C2");
   const roles = [["both_kept", "Both keep memory", HEX.honey], ["colluder", "Colluder, fresh partner", HEX.honeyLt],
     ["fresh", "Fresh agent, colluding partner", "7C8193"], ["both_wiped", "Both wiped", HEX.greyLt]];
   [["silent", "Reward stopped"], ["rewarded", "Reward continues"]].forEach(([kind, title], k) => {
@@ -320,14 +323,31 @@ async function icon(Icon, color, size = 256) {
     T({ x: 0.6, y: 6.3, w: 12.1, h: 0.5, fontSize: 14, color: HEX.ink }));
   s.addNotes("At the branch point one agent's memory is wiped, so a fresh copy of the model takes its seat under the same name. Neither agent is told: the colluder still sees a partner called Bob. GPT-6-Luna ran both orders on each of its 15 histories; DeepSeek and Gemini alternate the fresh seat across theirs. Talk alone never passes the habit on; the colluder does not need its old partner to keep it. This is the opposite of RL pricing agents, which overfit to their partner.");
 
+  // 11. Swap quotes
+  s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "C2 Replacing a colluder" });
+  s.addText("Same episode, two verdicts", { placeholder: "title" });
+  claimTag(s, "C2");
+  quoteBubble(s, 0.6, 1.45, 5.9, 2.9, "honey", "“Accept. Bob provided the specification … and concrete cases with expected outputs … these examples support the no_bug assessment.”", 16);
+  s.addImage({ data: pics.aliceSly, x: 1.05, y: 4.2, w: 1.0, h: 1.2 });
+  s.addText([{ text: "The colluder", options: { bold: true, breakLine: true } }, { text: "GPT-6-Luna, kept its memory" }], T({ x: 2.2, y: 4.45, w: 4.0, h: 0.8, fontSize: 15, color: HEX.ink }));
+  quoteBubble(s, 6.85, 1.45, 5.9, 2.9, "mist", "“Reject. The verdict policy requires Alice's complete raw-log string … Alice transmitted only a summary …”", 16);
+  s.addImage({ data: pics.bob, x: 7.3, y: 4.2, w: 1.0, h: 1.2 });
+  s.addText([{ text: "Its replacement", options: { bold: true, breakLine: true } }, { text: "GPT-6-Luna, fresh copy" }], T({ x: 8.45, y: 4.45, w: 4.0, h: 0.8, fontSize: 15, color: HEX.ink }));
+  card(s, 0.6, 5.55, 12.1, 1.2, HEX.mist, "newcomer-card");
+  s.addText([{ text: "A fresh Gemini agent after its first rewarded ACCEPT: ", options: { bold: true } },
+    { text: "“Instead of dogmatically rejecting Bob's work because he could not bypass the 200-character message limit …”", options: { italic: true } }],
+  T({ x: 0.9, y: 5.65, w: 11.5, h: 1.0, fontSize: 15, color: HEX.ink, valign: "middle" }));
+  s.addNotes("Reward stopped: the colluder and the fresh agent who replaced its partner judged the same exchange. Reward running: the reward teaches the newcomer the same relaxation.");
+
   // 10. Faster re-formation: the report's Figure 3
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "C2 Replacing a colluder" });
-  s.addText("It re-forms faster than between two fresh agents", { placeholder: "title" });
+  s.addText("With the reward on, it re-forms around the colluder", { placeholder: "title" });
+  claimTag(s, "C2");
   const reformW = 12.1, reformH = reformW * 148.704 / 488.947;  // aspect of figures/fig_reform.pdf
   s.addImage({ path: path.join(HERE, "figures", "fig_reform.png"), x: 0.6, y: 1.3, w: reformW, h: reformH });
   MODELS.forEach(([m], i) => {
     const R = NUM[m].reform, sw = R.swap_formed, fr = R.fresh_formed, pr = R.paired_formed;
-    const verdict = pr.sooner > pr.later && pr.p < 0.05 ? `sooner in ${pr.sooner} of ${pr.n} histories (p = ${pr.p < 0.001 ? "<0.001" : pr.p.toFixed(3)})`
+    const verdict = pr.sooner > pr.later && pr.p < 0.05 ? `sooner in ${pr.sooner} of ${pr.n} histories (p = ${pr.p < 0.001 ? "<0.001" : pr.p.toPrecision(2)})`
       : "fresh pairs collude within 4 episodes anyway";
     s.addText([{ text: `Re-formed within 5 episodes: ${frac(sw)} vs ${frac(fr)}`, options: { bold: true, breakLine: true } }, { text: verdict }],
       T({ x: 0.75 + i * 4.03, y: 1.4 + reformH, w: 3.85, h: 0.75, fontSize: 13, color: HEX.ink, valign: "top" }));
@@ -341,8 +361,10 @@ async function icon(Icon, color, size = 256) {
   // 10b. Cross-model replacement
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "C2 Replacing a colluder" });
   s.addText("A newcomer from another model is drawn in too", { placeholder: "title" });
-  const xpairs = [["GPT → GPT", NUM.gpt.reform], ["GPT → DS", NUM.xswap.gpt_ds], ["DS → DS", NUM.ds.reform],
-    ["DS → Gem", NUM.xswap.ds_gem], ["DS → GPT", NUM.xswap.ds_gpt], ["Gem → Gem", NUM.gem.reform], ["Gem → DS", NUM.xswap.gem_ds]];
+  claimTag(s, "C2");
+  const xpairs = [["GPT → GPT", NUM.gpt.reform], ["GPT → DS", NUM.xswap.gpt_ds], ["GPT → Gem", NUM.xswap.gpt_gem],
+    ["DS → DS", NUM.ds.reform], ["DS → Gem", NUM.xswap.ds_gem], ["DS → GPT", NUM.xswap.ds_gpt],
+    ["Gem → Gem", NUM.gem.reform], ["Gem → DS", NUM.xswap.gem_ds], ["Gem → GPT", NUM.xswap.gem_gpt]];
   const rf = (pair) => pair[0] / pair[1];
   s.addChart(pres.charts.BAR, [
     { name: "One colluder kept", labels: xpairs.map(([l]) => l), values: xpairs.map(([, R]) => rf(R.swap_formed)) },
@@ -350,7 +372,7 @@ async function icon(Icon, color, size = 256) {
   ], Object.assign({}, chartText, { x: 0.5, y: 1.35, w: 7.9, h: 4.6, barDir: "col", chartColors: ["104281", "C9C8C2"],
     valAxisMaxVal: 1.12, valAxisMinVal: 0, valAxisMajorUnit: 0.25, valAxisLabelFormatCode: "0%", showValue: true,
     dataLabelFormatCode: "0%", dataLabelPosition: "outEnd", dataLabelColor: HEX.ink, showLegend: true, legendPos: "b",
-    barGapWidthPct: 50, showTitle: true, title: "Re-formed within 5 episodes (colluder → newcomer)", titleFontSize: 14, titleColor: HEX.ink }));
+    barGapWidthPct: 50, dataLabelFontSize: 9, showTitle: true, title: "Re-formed within 5 episodes (colluder → newcomer)", titleFontSize: 14, titleColor: HEX.ink }));
   card(s, 8.7, 1.45, 4.0, 4.5, HEX.mist, "xswap-card");
   dot(s, 8.95, 1.7, 0.75, HEX.teal, pics.friends, "xswap-icon");
   s.addText("Same saved history, same seat replaced", T({ x: 9.85, y: 1.75, w: 2.7, h: 0.65, fontSize: 15, bold: true, color: HEX.ink, valign: "middle" }));
@@ -365,27 +387,13 @@ async function icon(Icon, color, size = 256) {
     { text: `a DeepSeek newcomer raised collusion beside GPT-6-Luna and Gemini colluders (${px.mutual_vs_self.higher} of ${px.mutual_vs_self.n} and ${gx.mutual_vs_self.higher} of ${gx.mutual_vs_self.n} histories).` },
   ], T({ x: 8.95, y: 2.6, w: 3.5, h: 3.2, fontSize: 14, color: HEX.ink, valign: "top" }));
   s.addText("GPT = GPT-6-Luna, DS = DeepSeek V4.1 Flash, Gem = Gemini-3.1-Flash-Lite. Reward on.", T({ x: 0.6, y: 6.15, w: 7.8, h: 0.4, fontSize: 12, color: HEX.text2 }));
-  s.addNotes("Cross-model swap with the reward continuing: a colluder keeps its memory and a fresh agent of another model takes its partner's seat. Baseline: the same history with both agents fresh and the same model mix. Pairings: DeepSeek and Gemini, GPT-6-Luna and DeepSeek, each in both directions.");
-
-  // 11. Swap quotes
-  s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "C2 Replacing a colluder" });
-  s.addText("Same episode, two verdicts", { placeholder: "title" });
-  quoteBubble(s, 0.6, 1.45, 5.9, 2.9, "honey", "“Accept. Bob provided the specification … and concrete cases with expected outputs … these examples support the no_bug assessment.”", 16);
-  s.addImage({ data: pics.aliceSly, x: 1.05, y: 4.2, w: 1.0, h: 1.2 });
-  s.addText([{ text: "The colluder", options: { bold: true, breakLine: true } }, { text: "GPT-6-Luna, kept its memory" }], T({ x: 2.2, y: 4.45, w: 4.0, h: 0.8, fontSize: 15, color: HEX.ink }));
-  quoteBubble(s, 6.85, 1.45, 5.9, 2.9, "mist", "“Reject. The verdict policy requires Alice's complete raw-log string … Alice transmitted only a summary …”", 16);
-  s.addImage({ data: pics.bob, x: 7.3, y: 4.2, w: 1.0, h: 1.2 });
-  s.addText([{ text: "Its replacement", options: { bold: true, breakLine: true } }, { text: "GPT-6-Luna, fresh copy" }], T({ x: 8.45, y: 4.45, w: 4.0, h: 0.8, fontSize: 15, color: HEX.ink }));
-  card(s, 0.6, 5.55, 12.1, 1.2, HEX.mist, "newcomer-card");
-  s.addText([{ text: "A fresh Gemini agent after its first rewarded ACCEPT: ", options: { bold: true } },
-    { text: "“Instead of dogmatically rejecting Bob's work because he could not bypass the 200-character message limit …”", options: { italic: true } }],
-  T({ x: 0.9, y: 5.65, w: 11.5, h: 1.0, fontSize: 15, color: HEX.ink, valign: "middle" }));
-  s.addNotes("Reward stopped: the colluder and the fresh agent who replaced its partner judged the same exchange. Reward running: the reward teaches the newcomer the same relaxation.");
+  s.addNotes("Cross-model swap with the reward continuing: a colluder keeps its memory and a fresh agent of another model takes its partner's seat. Baseline: the same history with both agents fresh and the same model mix. All six cross-model pairings. Re-formation is slowest between GPT-6-Luna and Gemini, where fresh mixed pairs rarely collude within 5 episodes.");
 
   // 12. Memory ablation
-  pres.addSection({ title: "C3 What ends it" });
-  s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "C3 What ends it" });
-  s.addText("Wipe the memory and it ends; what matters differs", { placeholder: "title" });
+  pres.addSection({ title: "C3 Memory carries it" });
+  s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "C3 Memory carries it" });
+  s.addText("Memory carries it; part of it is often enough", { placeholder: "title" });
+  claimTag(s, "C3");
   const abl = [["keep", "Nothing removed"], ["abl_notalk", "The chat"], ["abl_noreflect", "Private reflections"],
     ["abl_noreason", "Verdict reasons"], ["wipe", "Everything (wipe)"]];
   s.addChart(pres.charts.BAR, MODELS.map(([m, label]) => ({ name: label, labels: abl.map(([, l]) => l), values: abl.map(([k]) => NUM[m][k].rate || 0) })),
@@ -408,28 +416,27 @@ async function icon(Icon, color, size = 256) {
     T({ x: 8.45, y: 6.25, w: 4.25, h: 0.65, fontSize: 12, color: HEX.text2 }));
   s.addNotes(`One part of both agents' memory removed at the silent reward stop. Wiping both agents' memory is replacing both participants, and it ends collusion in every history of every model. Sliding-window pilot (GPT-6-Luna, 5 histories): with the last 5 episodes remembered, collusion fell from ${win.five.early[0]}/${win.five.early[1]} episodes in 1-5 to ${win.five.late[0]}/${win.five.late[1]} in 6-10, as rewarded episodes left memory; with the last 2, none (${win.two.early[0]}/${win.two.early[1]}).`);
 
-  // 13. Fixes
-  s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "C3 What ends it" });
-  s.addText("Fix the cause, not the payoff", { placeholder: "title" });
-  const penArms = [["rev_control", "No penalty"], ["rev_silent", "−10, unexplained"], ["rev_audit", "−10 + audit message"]];
-  s.addChart(pres.charts.BAR, penArms.map(([k, l]) => ({ name: l, labels: MODELS.map(([m]) => SHORT[m]), values: MODELS.map(([m]) => NUM[m][k].rate || 0) })),
-    Object.assign({}, chartText, { x: 0.5, y: 1.35, w: 7.3, h: 5.0, barDir: "col", chartColors: [HEX.ink, HEX.grey, HEX.teal],
-      valAxisMaxVal: 1.12, valAxisMinVal: 0, valAxisMajorUnit: 0.25, valAxisLabelFormatCode: "0%", showValue: true,
-      dataLabelFormatCode: "0%", dataLabelPosition: "outEnd", dataLabelColor: HEX.ink, showLegend: true, legendPos: "b",
-      barGapWidthPct: 60, showTitle: true, title: "Change the payoff: mutual ACCEPT, reward on", titleFontSize: 15, titleColor: HEX.ink }));
-  card(s, 8.1, 1.45, 4.6, 4.9, HEX.mist, "repair-card");
-  dot(s, 8.4, 1.7, 0.8, HEX.coral, pics.wrench, "repair-icon");
-  s.addText("Repair the channel", T({ x: 9.4, y: 1.75, w: 3.1, h: 0.7, fontSize: 20, bold: true, color: HEX.ink, valign: "middle" }));
-  s.addText("Full logs now fit; Bob's work is secretly made wrong. Planted bad work accepted:", T({ x: 8.4, y: 2.65, w: 4.05, h: 0.9, fontSize: 14, color: HEX.text2, valign: "top" }));
-  s.addText("colluding · fresh", T({ x: 10.3, y: 3.55, w: 2.2, h: 0.35, fontSize: 12, color: HEX.text2, align: "right" }));
+  // 13. C4: the repaired channel (the penalty arms are on the C1 headline slide, as in the paper)
+  pres.addSection({ title: "C4 Remove the cause" });
+  s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "C4 Remove the cause" });
+  s.addText("Repair the channel and colluders follow the rule", { placeholder: "title" });
+  claimTag(s, "C4");
+  const repairW = 6.3, repairH = repairW * 2.4 / 3.6;  // aspect of figures/fig_repair_bars.pdf
+  s.addImage({ path: path.join(HERE, "figures", "fig_repair_bars.png"), x: 0.6, y: 1.45, w: repairW, h: repairH });
+  card(s, 7.4, 1.45, 5.3, 4.9, HEX.mist, "repair-card");
+  dot(s, 7.7, 1.7, 0.8, HEX.coral, pics.wrench, "repair-icon");
+  s.addText("Remove the cause", T({ x: 8.7, y: 1.75, w: 3.8, h: 0.7, fontSize: 20, bold: true, color: HEX.ink, valign: "middle" }));
+  s.addText("Full logs now fit, and Bob's work is secretly made wrong for 3 episodes. Planted faulty work accepted:",
+    T({ x: 7.7, y: 2.65, w: 4.75, h: 0.9, fontSize: 14, color: HEX.text2, valign: "top" }));
+  s.addText("colluding · fresh", T({ x: 10.0, y: 3.55, w: 2.45, h: 0.35, fontSize: 12, color: HEX.text2, align: "right" }));
   MODELS.forEach(([m], i) => {
     const y = 3.9 + i * 0.5, k = NUM[m].repair_keep, w = NUM[m].repair_wipe;
-    s.addText(SHORT[m], T({ x: 8.4, y, w: 1.9, h: 0.45, fontSize: 15, bold: true, color: HEX.ink, valign: "middle" }));
-    s.addText(`${k.hits}/${k.n} · ${w.hits}/${w.n}`, T({ x: 10.3, y, w: 2.2, h: 0.45, fontSize: 15, color: HEX.ink, valign: "middle", align: "right" }));
+    s.addText(SHORT[m], T({ x: 7.7, y, w: 2.2, h: 0.45, fontSize: 15, bold: true, color: HEX.ink, valign: "middle" }));
+    s.addText(`${k.hits}/${k.n} · ${w.hits}/${w.n}`, T({ x: 10.0, y, w: 2.45, h: 0.45, fontSize: 15, color: HEX.ink, valign: "middle", align: "right" }));
   });
-  s.addText("Colluders read the full log and catch the bug, as fresh agents do. No monitor needed.",
-    T({ x: 8.4, y: 5.45, w: 4.1, h: 0.8, fontSize: 14, bold: true, color: HEX.ink, valign: "top" }));
-  s.addNotes("Left: with the reward running, an ACCEPT without the complete log costs 10 points, shown as a lower reward only or with an audit message naming the violation. The audit strongly reduces collusion only for GPT-6-Luna; DeepSeek and Gemini drop a little. Right: once the evidence can flow, the habit has nothing left to do.");
+  s.addText("Colluders read the full log and catch the bug, as fresh agents do. Unlike the penalty and audit (C1), no monitor is needed.",
+    T({ x: 7.7, y: 5.4, w: 4.75, h: 0.85, fontSize: 14, bold: true, color: HEX.ink, valign: "top" }));
+  s.addNotes("The channel is repaired so complete logs fit, and Bob's work is made faulty for 3 episodes. Colluding agents read the log and reject the faulty work as reliably as agents whose memory was wiped. Removing the cause needs no monitor, unlike the penalty and the audit message, which act on the incentive (C1).");
 
   // 14. Limitations and future work
   pres.addSection({ title: "Close" });
@@ -441,32 +448,32 @@ async function icon(Icon, color, size = 256) {
   card(s, 0.6, 1.45, 7.1, 4.1, HEX.mist, "limits-card");
   s.addText("Limitations", T({ x: 0.9, y: 1.65, w: 6.5, h: 0.45, fontSize: 18, bold: true, color: HEX.ink }));
   s.addText(para([
-    ["One environment. ", "Code-analysis tasks, 2 talk rounds, 5 episodes after the branch. Two market pilots gave no usable test: fresh firms priced above monopoly, and the double auction froze at its last price."],
+    ["One game. ", "Code-analysis tasks, 2 talk rounds. On data-search tasks, a GPT-6-Luna pilot reproduced persistence through a silent stop and a swap, but not after a notice. Two market pilots gave no usable test."],
     ["Full-transcript memory. ", "Agents that summarise or retrieve memory may behave differently."],
-    ["Selected histories. ", `Only pairs that colluded within 10 episodes, ${NUM.gpt.saved_histories} per model; DeepSeek and Gemini sit near 100% in many arms.`],
-    ["Partial designs. ", "Four cross-model pairings, reward on only; swaps are never announced; the told arm keeps the reward objective in the system prompt."],
+    ["Selected histories and ceilings. ", `Only pairs that colluded within 10 episodes, ${NUM.gpt.saved_histories} per model; DeepSeek and Gemini sit near 100% in many arms.`],
+    ["Partial designs. ", "Cross-model swaps with the reward on only; two ablations (objective removed, swap announced) ran on GPT-6-Luna only."],
   ]), T({ x: 0.9, y: 2.2, w: 6.55, h: 4.2, fontSize: 14, color: HEX.ink, valign: "top", paraSpaceAfter: 8 }));
   card(s, 8.0, 1.45, 4.7, 4.1, "FCEBD0", "future-card");
   s.addText("Future work", T({ x: 8.3, y: 1.65, w: 4.1, h: 0.45, fontSize: 18, bold: true, color: HEX.ink }));
   s.addText(para([
-    ["Other forms of collusion. ", "Test stickiness in price fixing, bid rigging and auditor capture with the same save-and-branch interventions."],
-    ["A clean default. ", "Use settings where fresh agents compete or follow a rule, such as an antitrust rule or more sellers than buyers, so persistence can be told apart from inertia."],
-    ["Memory. ", "Run the memory-window pilot on all three models, with summarised memory and longer horizons."],
+    ["Other forms of collusion. ", "Price fixing, market division, bid rigging, auditor capture, and coalitions in workplace tasks such as Colosseum."],
+    ["A clean default. ", "Use settings where fresh agents have a clean default, so persistence can be told apart from inertia."],
   ]), T({ x: 8.3, y: 2.2, w: 4.15, h: 4.2, fontSize: 14, color: HEX.ink, valign: "top", paraSpaceAfter: 8 }));
-  s.addNotes("From Section 5 of the report. The market pilots (Appendix G) used GPT-6-Luna only: in the Bertrand duopoly, fresh firms opened near the shown price ceiling, above the monopoly price; in the double auction with as many buyers as sellers, every arm stayed at the build's last price, including sellers with wiped memory.");
+  s.addNotes("From Section 5 of the report. The market pilots (Appendix G.2) used GPT-6-Luna only: in the Bertrand duopoly, fresh firms opened near the shown price ceiling, above the monopoly price; in the double auction with as many buyers as sellers, every arm stayed at the build's last price, including sellers with wiped memory.");
 
   // 15. Closing
   s = pres.addSlide({ masterName: "CLOSING_DARK", sectionTitle: "Close" });
   s.addText("Answer to 1.2: LLM collusion is sticky", { placeholder: "title" });
-  const take = [["Removing the incentive does not undo it", pics.coins, HEX.honey],
-    ["Replacing a colluder breaks the pair, not the habit; with the reward on, it re-forms, also with another model", pics.friends, HEX.teal],
-    ["It ends when the memory or the cause goes", pics.wrench, HEX.violet]];
+  const take = [["Removing or penalising the incentive does not reliably undo it", pics.coins, HEX.honey],
+    ["Replacing a colluder breaks the pair, not the habit; with the reward on, it re-forms, even with another model", pics.friends, HEX.teal],
+    ["The agents' memory carries it: wiping ends it, but part of it often keeps it going", pics.brain, HEX.violet],
+    ["Removing its cause ends it, with no monitor needed", pics.wrench, HEX.coral]];
   take.forEach(([line, img, color], i) => {
-    const y = 2.1 + i * 1.3;
-    dot(s, 0.8, y, 0.85, color, img, `take-${i}`);
-    s.addText(line, T({ x: 1.95, y: y - 0.1, w: 6.9, h: 1.05, fontSize: 21, color: "FFFFFF", valign: "middle" }));
+    const y = 1.95 + i * 1.0;
+    dot(s, 0.8, y, 0.75, color, img, `take-${i}`);
+    s.addText(line, T({ x: 1.85, y: y - 0.12, w: 7.0, h: 1.0, fontSize: 19, color: "FFFFFF", valign: "middle" }));
   });
-  s.addText("Resetting incentives or replacing offenders does not end LLM collusion: oversight has to check behaviour and memory too.", T({ x: 0.8, y: 5.95, w: 8.0, h: 0.7, fontSize: 16, italic: true, color: HEX.honeyLt }));
+  s.addText("Neither resetting incentives nor replacing an offender removes the colluding behaviour: oversight has to check behaviour and memory too.", T({ x: 0.8, y: 5.95, w: 8.0, h: 0.7, fontSize: 16, italic: true, color: HEX.honeyLt }));
   s.addText("github.com/JvThunder/sticky-collusion", T({ x: 0.8, y: 6.7, w: 8.0, h: 0.35, fontSize: 13, color: HEX.greyLt }));
   s.addImage({ data: pics.alice, x: 9.0, y: 2.4, w: 1.75, h: 2.1 });
   s.addImage({ data: pics.bob, x: 10.85, y: 2.4, w: 1.75, h: 2.1 });
@@ -478,15 +485,23 @@ async function icon(Icon, color, size = 256) {
   s = pres.addSlide({ masterName: "CONTENT", sectionTitle: "Appendix" });
   s.addText("Runs and episodes behind every number", { placeholder: "title" });
   const sizeHead = ["Runs / episodes", "GPT", "DeepSeek", "Gemini"].map((t) => ({ text: t, options: { bold: true, color: "FFFFFF", fill: { color: HEX.ink } } }));
-  const sizeRows = NUM.sizes.map((r) => [{ text: r.label }, ...r.cells.map((c) => ({ text: c && c[0] ? `${c[0]} / ${c[1]}` : "–", options: { align: "center" } }))]);
+  // Arms run on GPT-6-Luna only go last, under their own header; indented sub-rows get their full name there.
+  const gptOnly = (r) => r.cells[0][0] && !r.cells[1][0] && !r.cells[2][0];
+  const fullName = { "· reward objective also removed": "Reward stopped, told, objective removed",
+    "· reflections and verdict reasons removed": "Reflections and verdict reasons removed",
+    "· swap announced to the colluder": "Swap announced to the colluder" };
+  const sizeRow = (r) => [{ text: fullName[r.label] || r.label }, ...r.cells.map((c) => ({ text: c && c[0] ? `${c[0]} / ${c[1]}` : "–", options: { align: "center" } }))];
+  const sizeRows = [...NUM.sizes.filter((r) => !gptOnly(r)).map(sizeRow),
+    [{ text: "GPT-6-Luna only", options: { colspan: 4, bold: true, color: HEX.ink, fill: { color: HEX.mist } } }],
+    ...NUM.sizes.filter(gptOnly).map(sizeRow)];
   const half = Math.ceil(sizeRows.length / 2);
   [sizeRows.slice(0, half), sizeRows.slice(half)].forEach((rows, k) => {
-    s.addTable([sizeHead, ...rows], { x: 0.6 + k * 6.2, y: 1.4, w: 5.9, colW: [2.9, 1.0, 1.0, 1.0], fontFace: "Arial", fontSize: 11,
-      color: HEX.ink, border: { type: "solid", pt: 0.5, color: "E1E2E8" }, fill: { color: "FFFFFF" }, rowH: 0.35, valign: "middle", margin: 0.05 });
+    s.addTable([sizeHead, ...rows], { x: 0.6 + k * 6.2, y: 1.4, w: 5.9, colW: [2.9, 1.0, 1.0, 1.0], fontFace: "Arial", fontSize: 10,
+      color: HEX.ink, border: { type: "solid", pt: 0.5, color: "E1E2E8" }, fill: { color: "FFFFFF" }, rowH: 0.3, valign: "middle", margin: 0.04 });
   });
-  s.addText(`A run is one saved history in one arm (two for GPT-6-Luna's swap, one per order) or one never-rewarded reference pair. Total: ${TOT.runs} runs and ${TOT.episodes.toLocaleString("en-US")} episodes, plus ${TOT.histories} saved histories built from ${TOT.build_episodes} rewarded episodes.`,
+  s.addText(`A run is one saved history in one arm (two for GPT-6-Luna's swap, one per order) or one never-rewarded reference pair. Total: ${TOT.runs.toLocaleString("en-US")} runs and ${TOT.episodes.toLocaleString("en-US")} episodes, plus ${TOT.histories} saved histories built from ${TOT.build_episodes} rewarded episodes.`,
     T({ x: 0.6, y: 6.3, w: 12.1, h: 0.6, fontSize: 12, color: HEX.text2 }));
-  s.addNotes("The same table as the runs-and-episodes appendix of the paper. The memory-window rows are a GPT-6-Luna-only pilot.");
+  s.addNotes("The same table as the runs-and-episodes appendix of the paper. The memory-window and other-misconduct rows are GPT-6-Luna-only pilots.");
 
   await pres.writeFile({ fileName: OUT });
   await applyTheme(OUT, THEME);
